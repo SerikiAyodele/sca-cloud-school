@@ -50,7 +50,7 @@ By breaking up the users into different groups, they wouldn't be able to view ea
 
 * `sudo chgrp group1 group1.txt` 
 * `sudo chgrp group2 group2.txt`
-* `sudo chgrp group3 group3.txt`\
+* `sudo chgrp group3 group3.txt` 
 
  I run the following command to see the permissions
 
