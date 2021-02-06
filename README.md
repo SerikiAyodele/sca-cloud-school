@@ -48,17 +48,17 @@ By breaking up the users into different groups, they wouldn't be able to view ea
 
 * I then create three text files group1.txt, group2.txt and group3.txt and assign them to the groups respectifully
 
-`sudo chgrp group1 group1.txt
-sudo chgrp group2 group2.txt
-sudo chgrp group3 group3.txt`
+* `sudo chgrp group1 group1.txt` 
+* `sudo chgrp group2 group2.txt`
+* `sudo chgrp group3 group3.txt`
 
 * I run the following command to see the permissions
 
-`ll
+`ll`
 //output
--rw-rw-r-- 1 vagrant group1 15 feb 6 09:58 group1.txt
--rw-rw-r-- 1 vagrant group2 12 feb 6 10:00 group2.txt
--rw-rw-r-- 1 vagrant group3 0 feb 6 09:55 group3.txt`
+* `-rw-rw-r-- 1 vagrant group1 15 feb 6 09:58 group1.txt`
+* `-rw-rw-r-- 1 vagrant group2 12 feb 6 10:00 group2.txt`
+* `-rw-rw-r-- 1 vagrant group3 0 feb 6 09:55 group3.txt`
 
 * we can login using a user command, when a user from group1 tries to access data in group 2, he get's an error message telling him to ask for permission
 
