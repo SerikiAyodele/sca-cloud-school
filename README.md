@@ -50,11 +50,11 @@ By breaking up the users into different groups, they wouldn't be able to view ea
 
 * `sudo chgrp group1 group1.txt` 
 * `sudo chgrp group2 group2.txt`
-* `sudo chgrp group3 group3.txt`
+* `sudo chgrp group3 group3.txt`\
 
-* I run the following command to see the permissions
+ I run the following command to see the permissions
 
-`ll`
+`ll` \
 //output
 * `-rw-rw-r-- 1 vagrant group1 15 feb 6 09:58 group1.txt`
 * `-rw-rw-r-- 1 vagrant group2 12 feb 6 10:00 group2.txt`
