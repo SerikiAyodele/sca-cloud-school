@@ -37,16 +37,32 @@ vagrant@vagrant-ubuntu-trusty-64:~$ sudo groupadd -g group1 `
 
 #### 4 Demonstrate that user(s) in a group cannot access files/folders that belong to another group unless they are added to that group
 
-I have three groups (group1, group2 and group3).
+First of all root user have full access to everything in the system, so you don't have to do anything to allow him the see anything.
+By breaking up the users into different groups, they wouldn't be able to view each other's files if the permissions were set accordingly
+
+* >>I have three groups (group1, group2 and group3).
 
  * The group1 group has the users user1-5.
  * The group2 group has the users user5-10 And
  * The group3 group has the users user 10-15
 
-First of all root user have full access to everything in the system, so you don't have to do anything to allow him the see anything.
-By breaking up the users into different groups, they wouldn't be able to view each other's files if the permissions were set accordingly
+* >>I then create three text files group1.txt, group2.txt and group3.txt and assign them to the groups respectifully
+`sudo chgrp group1 group1.txt
+sudo chgrp group2 group2.txt
+sudo chgrp group3 group3.txt`
+
+* >>I run the following command to see the permissions
+`ll
+//output
+-rw-rw-r-- 1 vagrant group1 15 feb 6 09:58 group1.txt
+-rw-rw-r-- 1 vagrant group2 12 feb 6 10:00 group2.txt
+-rw-rw-r-- 1 vagrant group3 0 feb 6 09:55 group3.txt`
+
+* >>we can login using a user command, when a user from group1 tries to access data in group 2, he get's an error message telling him to ask for permission
+
+
 
 #### issues that might be encountered
-In using vagrant and virtual box, you might have to enable the vt-x configuration
+In using vagrant and virtual box, you might have to enable the vt-x configuration on your local computer
 
 Project Link: https://github.com/serikiayodele/task1
