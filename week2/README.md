@@ -18,9 +18,6 @@
 
 
 ## How It Works
- * I created 2 functions,one to calculate the average age of the female's from the user.txt file
-   and the other to calculate the average age of the male's from the user.txt file
-   
  * I used a while loop and for loop to read the file and perform operations and the data
  
  * AWK was very important and convinient for my code to work, i used this in my for loop
