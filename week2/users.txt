@@ -1,0 +1,8 @@
+GENDER NAME AGE
+M  Josh 25
+F  Lucy 19
+F  Grace 9
+F  Princess 20
+M  Job 50
+M  Pete 33
+F  Pauline 27
