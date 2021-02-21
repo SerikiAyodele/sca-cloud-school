@@ -1,4 +1,4 @@
-# sca-cloud-school
+# Task 3
 ## About The Task
 * Write a Docker Compose file to deploy any application with a Database
 
@@ -9,8 +9,8 @@
 
 ## Prerequisites
 * install Docker
-#Installation
- * https://docker.hub
+`* #Installation
+ * https://docker.hub`
 
 
 ## How It Works
@@ -18,13 +18,10 @@
 #### 1. I wrote my Node.js code
 * It connects to the database and execute an SELECT SQL query and finally returns the values of the ITEM_NAME field from table MOE_ITEM_T
 
-`var mysqlHost = process.env.MYSQL_HOST || 'localhost';
-var mysqlPort = process.env.MYSQL_PORT || '3306';
-var mysqlUser = process.env.MYSQL_USER || 'root';
-var mysqlPass = process.env.MYSQL_PASS || 'root';
-var mysqlDB   = process.env.MYSQL_DB   || 'node_db';`
-
-#### 2. Build the Dockerfile
+`* var mysqlHost = process.env.MYSQL_HOST || 'localhost';
+ * var mysqlPort = process.env.MYSQL_PORT || '3306'; * var mysqlUser = process.env.MYSQL_USER || 'root'; * var mysqlPass = process.env.MYSQL_PASS || 'root';  * var mysqlDB   = process.env.MYSQL_DB   || 'node_db';`
+ 
+ #### 2. Build the Dockerfile
 * We get our docker image from a docker file, after creating my dockerfile, with the command below i built my docker image
 
 `sudo docker build . -t name/nodejs-mysql-app `
