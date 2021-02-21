@@ -1,4 +1,4 @@
-# sca-cloud-school
+# Task 1
 ## About The Task
 * Create 3 groups and 15 users
 * Assign the 15 users across the 3 groups
