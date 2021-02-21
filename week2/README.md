@@ -1,4 +1,4 @@
-# sca-cloud-school
+# Task 2
 ## About The Task
 * Write a bash script that takes the file users.txt as input and prints out the average age of male and average age of female.
 
