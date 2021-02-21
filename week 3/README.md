@@ -22,7 +22,8 @@
 var mysqlPort = process.env.MYSQL_PORT || '3306';
 var mysqlUser = process.env.MYSQL_USER || 'root'; 
 var mysqlPass = process.env.MYSQL_PASS || 'root';  
-var mysqlDB   = process.env.MYSQL_DB   || 'node_db';```
+var mysqlDB   = process.env.MYSQL_DB   || 'node_db'; 
+```
  
  #### 2. Build the Dockerfile
 * We get our docker image from a docker file, after creating my dockerfile, with the command below i built my docker image
