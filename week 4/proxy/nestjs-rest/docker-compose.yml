@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  nest:
+    build: .
+    restart: always
+    ports:
+      - 5000:5000
+    env_file:
+      - .env
+    links:
+      - database
+
+  database:cd 
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    env_file:
+      - .env
+    volumes:
+      - ~/database/nest:/var/lib/mysql
+
+
+volumes:
+  db_data:
+ 
+networks:
+  default:
+    external:
+      name: nginx-proxy
