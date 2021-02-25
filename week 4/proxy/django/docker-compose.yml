@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - 8080:80
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+    environment:
+      - POSTGRES_DB=djangosample
+      - POSTGRES_USER=sampleuser
+      - POSTGRES_PASSWORD=samplesecret
+
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile-dev
+    volumes:
+      - ./:/app/
+    command: ["./manage.py", "runserver", "0:8000"]
+    environment:
+     - DJANGO_DB_HOST=db
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8000:8000
+
+  volumes:
+  db_data:
+ 
+networks:
+  default:
+    external:
+      name: nginx-proxy
