@@ -38,7 +38,9 @@ Specifications: Using nginx location directive,
 │ ├── site1
 │ │ ├──docker-compose.yml
 │ ├── site2
-│ │ ├──docker-compose.yml ```
+│ │ ├──docker-compose.yml
+
+```
 
 * We will need a network that the containerized web servers can use to communicate to the reverse proxy. On the host service, create a Docker network called nginx-proxy:
 `docker network create nginx-proxy`
