@@ -31,14 +31,14 @@ Specifications: Using nginx location directive,
 ## How It Works
 * We will create three projects: Nginx-proxy, django, nestjs. The first will implement nginx-proxy and docker-letsencrypt-nginx-proxy-companion. The latter two will be WordPress blogs. The proxy will enable the hosting of the two WordPress blogs and will provision them with Let’s Encrypt certificates. For simplicity, we will pack all the projects in the same repository, but in a real world scenario they can be completely independent repositories. The repository folder structure will be this:
 
-`
+```
 ├── repository_root
 │ ├── proxy
 │ │ ├──docker-compose.yml
 │ ├── site1
 │ │ ├──docker-compose.yml
 │ ├── site2
-│ │ ├──docker-compose.yml`
+│ │ ├──docker-compose.yml ```
 
 * We will need a network that the containerized web servers can use to communicate to the reverse proxy. On the host service, create a Docker network called nginx-proxy:
 `docker network create nginx-proxy`
