@@ -29,21 +29,11 @@ Specifications: Using nginx location directive,
 
 
 ## How It Works
-* We will create three projects: Nginx-proxy, django, nestjs. The first will implement nginx-proxy and docker-letsencrypt-nginx-proxy-companion. The latter two will be WordPress blogs. The proxy will enable the hosting of the two WordPress blogs and will provision them with Let’s Encrypt certificates. For simplicity, we will pack all the projects in the same repository, but in a real world scenario they can be completely independent repositories. The repository folder structure will be this:
-
-```
-├── repository_root
-│ ├── proxy
-│ │ ├──docker-compose.yml
-│ ├── site1
-│ │ ├──docker-compose.yml
-│ ├── site2
-│ │ ├──docker-compose.yml
-
-```
-
-* We will need a network that the containerized web servers can use to communicate to the reverse proxy. On the host service, create a Docker network called nginx-proxy:
+*  3 projects were created, the first is proxy, second /django and the third /nest
+*  The proxy, is the nginx proxy whixch contains code that helps nginx communicate with the other applications. that is, it will enable the hosting of the two other projects.
+*  We will need a network that the containerized web servers can use to communicate to the reverse nginx-proxy. On the host service,i created a Docker network called nginx-proxy using the command.
+*  
 `docker network create nginx-proxy`
 
-* In the proxy folder we create a docker-compose.yml file and define two services: nginx-proxy and letsencrypt-proxy.
+* In the proxy folder i created a docker-compose.yml file and define two services: nginx-proxy and letsencrypt-proxy
 
