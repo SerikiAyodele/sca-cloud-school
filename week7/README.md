@@ -1,6 +1,6 @@
 # Task 7
 ## About The Task
-* Write a Docker Compose file to deploy any application with a Database
+* Using Ansible configure a playbook to an application to a VM. That application should have use nginx to route traffic to the application
 
 ## Built With
 * Docker-compose
