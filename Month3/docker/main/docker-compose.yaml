@@ -1,0 +1,28 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ../../frontend
+    image: seriki/sca-chat-frontend:1.0.0
+    ports:
+      - 8000:80
+  backend:
+    depends_on:
+      - mongo
+    build:
+      context: ../../backend
+    image: seriki/sca-chat-backend:1.0.0
+    environment:
+      NODE_ENV: docker-compose
+    ports:
+      - 8080:8080
+  mongo:
+    image: mongo:4.4.5
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: test
+      MONGO_INITDB_ROOT_PASSWORD: test
+      MONGO_INITDB_DATABASE: messages
+    volumes:
+      - ./data/mongo/users.js:/docker-entrypoint-initdb.d/users.js:ro
+    ports:
+      - 27017:27017

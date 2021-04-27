@@ -1,0 +1,10 @@
+version: "3"
+services:
+  awscli:
+    build:
+      context: ./awscli
+    image: seriki/awscli
+  node:
+    build:
+      context: ./node
+    image: seriki/node

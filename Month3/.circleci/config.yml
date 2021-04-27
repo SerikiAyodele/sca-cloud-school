@@ -1,0 +1,95 @@
+version: 2.1
+
+# Jobs
+jobs:
+  lint_and_test_backend:
+    docker:
+      - image: seriki/node
+    steps:
+      - checkout
+      - run:
+          name: Install
+          command: |
+            cd backend &&
+            npm install
+      - run:
+          name: Lint
+          command: |
+            cd backend &&
+            npm run lint
+      - run:
+          name: Test
+          command: |
+            cd backend &&
+            npm test
+  docker_build_only:
+    docker:
+      - image: circleci/buildpack-deps:trusty
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Build Docker images
+          command: docker-compose -f docker/main/docker-compose.yaml build --parallel
+      - run:
+          name: Test run containers
+          command: |
+            docker-compose -f docker/main/docker-compose.yaml up -d
+            docker-compose -f docker/main/docker-compose.yaml down
+  docker_build_and_push:
+    docker:
+      - image: circleci/buildpack-deps:trusty
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Build Docker images
+          command: docker-compose -f docker/main/docker-compose.yaml build --parallel
+      - run:
+          name: Test run containers
+          command: |
+            docker-compose -f docker/main/docker-compose.yaml up -d
+            docker-compose -f docker/main/docker-compose.yaml down
+      - deploy:
+          name: Push to Docker Hub
+          command: |
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            docker-compose -f docker/main/docker-compose.yaml push
+  kubernetes_deploy:
+    docker:
+      - image: seriki/awscli
+    steps:
+      - checkout
+      - run:
+          name: Set up kubectl
+          command: aws eks --region eu-west-2 update-kubeconfig --name $EKS_CLUSTER_NAME
+      - run:
+          name: Deploy
+          command: |
+            cd deployment/k8s && 
+            ./apply.sh
+
+# Workflows
+workflows:
+  main:
+    jobs:
+      - lint_and_test_backend
+      - docker_build_only:
+          requires:
+            - lint_and_test_backend
+          filters:
+            branches:
+              ignore:
+                - main
+      - docker_build_and_push:
+          requires:
+            - lint_and_test_backend
+          filters:
+            branches:
+              only:
+                - main
+      - kubernetes_deploy:
+          requires:
+            - docker_build_and_push

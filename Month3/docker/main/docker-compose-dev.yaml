@@ -1,0 +1,9 @@
+version: '3'
+services:
+  frontend:
+    volumes:
+      - ../../frontend/src/static:/usr/share/nginx/html
+  backend:
+    volumes:
+      - ../../backend:/usr/src/app
+    command: npm run dev

@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 16px;
+  font-family: sans-serif;
+}
+
+input, textarea, button {
+  padding: 8px;
+}
+
+input, textarea {
+  width: 400px;
+}
+
+textarea {
+  height: 100px;
+  font-family: sans-serif;
+}
+
+.datetime {
+  color: #aaa;
+}

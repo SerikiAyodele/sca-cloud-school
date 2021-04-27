@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: sca-chat-frontend
+  name: sca-chat-frontend
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      service: sca-chat-frontend
+  template:
+    metadata:
+      labels:
+        service: sca-chat-frontend
+    spec:
+      containers:
+      - image: seriki/sca-chat-frontend:1.0.0
+        name: sca-chat-frontend
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 5
+          successThreshold: 1
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "200m"
+          limits:
+            memory: "400Mi"
+            cpu: "400m"
+      restartPolicy: Always

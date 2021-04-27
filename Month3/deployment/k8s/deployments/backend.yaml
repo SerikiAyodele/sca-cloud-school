@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: sca-chat-backend
+  name: sca-chat-backend
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      service: sca-chat-backend
+  template:
+    metadata:
+      labels:
+        service: sca-chat-backend
+    spec:
+      containers:
+      - image: seriki/sca-chat-backend:1.0.0
+        name: sca-chat-backend
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 5
+          successThreshold: 1
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "200m"
+          limits:
+            memory: "400Mi"
+            cpu: "400m"
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: sca-config
+              key: NODE_ENV
+        - name: MONGO_URL
+          valueFrom:
+            configMapKeyRef:
+              name: sca-config
+              key: MONGO_URL
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: sca-secret
+              key: MONGO_USERNAME
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sca-secret
+              key: MONGO_PASSWORD
+      restartPolicy: Always
