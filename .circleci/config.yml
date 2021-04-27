@@ -1,12 +1,14 @@
 version: 2.1
 
-# Jobs
+# Jobs for Month3
 jobs:
   lint_and_test_backend:
+    working_directory: ~/sca-cloud-school/Month3
     docker:
       - image: seriki/node
     steps:
-      - checkout
+      - checkout:
+          path: ~/sca-cloud-school
       - run:
           name: Install
           command: |
@@ -23,10 +25,12 @@ jobs:
             cd backend &&
             npm test
   docker_build_only:
+    working_directory: ~/sca-cloud-school/Month3
     docker:
       - image: circleci/buildpack-deps:trusty
     steps:
-      - checkout
+      - checkout:
+          path: ~/sca-cloud-school
       - setup_remote_docker:
           version: 19.03.13
       - run:
@@ -38,10 +42,12 @@ jobs:
             docker-compose -f docker/main/docker-compose.yaml up -d
             docker-compose -f docker/main/docker-compose.yaml down
   docker_build_and_push:
+    working_directory: ~/sca-cloud-school/Month3
     docker:
       - image: circleci/buildpack-deps:trusty
     steps:
-      - checkout
+      - checkout:
+          path: ~/sca-cloud-school
       - setup_remote_docker:
           version: 19.03.13
       - run:
@@ -58,10 +64,12 @@ jobs:
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker-compose -f docker/main/docker-compose.yaml push
   kubernetes_deploy:
+    working_directory: ~/sca-cloud-school/Month3
     docker:
       - image: seriki/awscli
     steps:
-      - checkout
+      - checkout:
+          path: ~/sca-cloud-school
       - run:
           name: Set up kubectl
           command: aws eks --region eu-west-2 update-kubeconfig --name $EKS_CLUSTER_NAME
