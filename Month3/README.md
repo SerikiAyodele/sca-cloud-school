@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/SerikiAyodele/SCA-month3.svg?style=svg)](https://circleci.com/gh/SerikiAyodele/SCA-month3)
+[![CircleCI](https://circleci.com/gh/SerikiAyodele/sca-cloud-school.svg?style=svg)](https://circleci.com/gh/SerikiAyodele/sca-cloud-school)
 
 ## About this project
 It is a basic chat application. The backend is built using Node and the frontend is a simple vanilla web application. MongoDB is used as a database to store chats.
